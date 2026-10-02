@@ -1,0 +1,1829 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="theme-color" content="#fff9f2">
+<title>测一测｜你的性格最像哪位古代女子</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+    width:100%;
+    min-height:100%;
+}
+
+body{
+    font-family:
+    "PingFang SC",
+    "Hiragino Sans GB",
+    "Microsoft YaHei",
+    sans-serif;
+    background:
+    radial-gradient(circle at 15% 10%,rgba(255,205,155,.42),transparent 28%),
+    radial-gradient(circle at 85% 20%,rgba(246,181,194,.32),transparent 30%),
+    linear-gradient(145deg,#fffaf5,#fff5ec 45%,#fdf1ef);
+    color:#453a35;
+    overflow-x:hidden;
+}
+
+button,
+input{
+    font-family:inherit;
+}
+
+button{
+    border:0;
+    outline:0;
+    cursor:pointer;
+}
+
+.page{
+    width:100%;
+    min-height:100vh;
+    position:relative;
+}
+
+.page::before{
+    content:"";
+    position:fixed;
+    width:280px;
+    height:280px;
+    border-radius:50%;
+    background:rgba(255,216,172,.18);
+    top:-100px;
+    right:-100px;
+    filter:blur(10px);
+    pointer-events:none;
+}
+
+.page::after{
+    content:"";
+    position:fixed;
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    background:rgba(222,184,201,.13);
+    bottom:-80px;
+    left:-80px;
+    filter:blur(10px);
+    pointer-events:none;
+}
+
+.container{
+    width:min(92%,520px);
+    margin:0 auto;
+    position:relative;
+    z-index:2;
+}
+
+/* ================= 密码页 ================= */
+
+#lockPage{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:30px 0;
+}
+
+.lock-card{
+    width:100%;
+    padding:46px 25px 40px;
+    border-radius:30px;
+    background:rgba(255,255,255,.72);
+    border:1px solid rgba(255,255,255,.9);
+    box-shadow:
+    0 20px 60px rgba(143,100,78,.12),
+    inset 0 1px 0 rgba(255,255,255,.9);
+    backdrop-filter:blur(18px);
+    text-align:center;
+}
+
+.logo-small{
+    font-family:"STKaiti","KaiTi",serif;
+    font-size:14px;
+    letter-spacing:5px;
+    color:#b98971;
+    margin-bottom:18px;
+}
+
+.lock-title{
+    font-family:"STKaiti","KaiTi","Songti SC",serif;
+    font-size:34px;
+    font-weight:500;
+    color:#3f3531;
+    line-height:1.35;
+}
+
+.lock-sub{
+    margin-top:13px;
+    font-size:13px;
+    color:#9c8880;
+    letter-spacing:1px;
+}
+
+.code-line{
+    width:100%;
+    height:1px;
+    background:linear-gradient(90deg,transparent,#dfc5b5,transparent);
+    margin:30px 0;
+}
+
+.code-input{
+    width:100%;
+    height:56px;
+    border:1px solid #ead8ce;
+    background:rgba(255,250,247,.8);
+    border-radius:16px;
+    text-align:center;
+    font-size:19px;
+    letter-spacing:8px;
+    color:#5d4941;
+    outline:none;
+    transition:.25s;
+}
+
+.code-input:focus{
+    border-color:#c89a82;
+    box-shadow:0 0 0 4px rgba(200,154,130,.1);
+}
+
+.enter-btn{
+    width:100%;
+    height:56px;
+    margin-top:15px;
+    border-radius:16px;
+    background:linear-gradient(135deg,#c98d76,#b97867);
+    color:#fff;
+    font-size:15px;
+    letter-spacing:3px;
+    box-shadow:0 10px 24px rgba(184,120,103,.2);
+    transition:.25s;
+}
+
+.enter-btn:active{
+    transform:scale(.98);
+}
+
+.error{
+    height:20px;
+    margin-top:12px;
+    color:#c56f67;
+    font-size:12px;
+}
+
+/* ================= 首页 ================= */
+
+#homePage{
+    display:none;
+    padding:34px 0 50px;
+}
+
+.hero{
+    padding:35px 23px 30px;
+    border-radius:32px;
+    background:
+    linear-gradient(145deg,rgba(255,255,255,.88),rgba(255,249,244,.73));
+    border:1px solid rgba(255,255,255,.9);
+    box-shadow:0 20px 55px rgba(143,100,78,.1);
+    overflow:hidden;
+    position:relative;
+}
+
+.hero-flower{
+    position:absolute;
+    right:-18px;
+    top:-24px;
+    font-size:100px;
+    opacity:.12;
+    transform:rotate(18deg);
+}
+
+.eyebrow{
+    font-size:11px;
+    letter-spacing:4px;
+    color:#c18c77;
+    margin-bottom:16px;
+}
+
+.hero h1{
+    font-family:"STKaiti","KaiTi","Songti SC",serif;
+    font-size:36px;
+    font-weight:500;
+    line-height:1.35;
+    color:#3f3531;
+}
+
+.hero h1 span{
+    display:block;
+    color:#bd806d;
+}
+
+.hero-desc{
+    margin-top:18px;
+    line-height:1.9;
+    font-size:14px;
+    color:#81716a;
+}
+
+.start-btn{
+    margin-top:28px;
+    width:100%;
+    height:57px;
+    border-radius:17px;
+    background:linear-gradient(135deg,#d19a80,#bd7e6c);
+    color:white;
+    font-size:15px;
+    letter-spacing:3px;
+    box-shadow:0 12px 25px rgba(190,126,108,.2);
+}
+
+.notice{
+    display:flex;
+    gap:9px;
+    align-items:flex-start;
+    margin-top:20px;
+    padding:15px 16px;
+    border-radius:17px;
+    background:rgba(255,244,236,.75);
+    font-size:12px;
+    color:#927e75;
+    line-height:1.7;
+}
+
+/* ================= 测试页 ================= */
+
+#quizPage{
+    display:none;
+    padding:24px 0 45px;
+}
+
+.quiz-top{
+    position:sticky;
+    top:0;
+    z-index:10;
+    padding:8px 0 18px;
+    background:linear-gradient(180deg,#fffaf6 75%,rgba(255,250,246,0));
+}
+
+.progress-wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:10px;
+}
+
+.progress-text{
+    font-size:12px;
+    color:#a1897f;
+}
+
+.progress-line{
+    height:5px;
+    border-radius:10px;
+    background:#f0e2da;
+    overflow:hidden;
+}
+
+.progress-inner{
+    height:100%;
+    width:0%;
+    border-radius:10px;
+    background:linear-gradient(90deg,#d29a80,#d99ea7);
+    transition:.35s ease;
+}
+
+.question-card{
+    margin-top:10px;
+    padding:27px 20px 24px;
+    border-radius:28px;
+    background:rgba(255,255,255,.82);
+    border:1px solid rgba(255,255,255,.95);
+    box-shadow:0 15px 45px rgba(143,100,78,.09);
+}
+
+.question-number{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:46px;
+    height:25px;
+    padding:0 10px;
+    border-radius:20px;
+    background:#fff0e8;
+    color:#c18a75;
+    font-size:11px;
+    letter-spacing:1px;
+}
+
+.question-title{
+    margin-top:19px;
+    font-family:"STKaiti","KaiTi","Songti SC",serif;
+    font-size:23px;
+    font-weight:500;
+    line-height:1.55;
+    color:#443934;
+}
+
+.question-tip{
+    margin-top:8px;
+    color:#aa9690;
+    font-size:12px;
+}
+
+.options{
+    margin-top:22px;
+    display:flex;
+    flex-direction:column;
+    gap:11px;
+}
+
+.option{
+    width:100%;
+    padding:16px 15px;
+    border:1px solid #eee0d8;
+    background:rgba(255,251,248,.78);
+    border-radius:17px;
+    text-align:left;
+    color:#645650;
+    font-size:14px;
+    line-height:1.65;
+    transition:.2s;
+    position:relative;
+}
+
+.option:active{
+    transform:scale(.985);
+}
+
+.option.selected{
+    border-color:#d29b82;
+    background:#fff4ed;
+    color:#7d594c;
+    box-shadow:0 5px 16px rgba(195,139,117,.1);
+}
+
+.option.selected::after{
+    content:"✓";
+    position:absolute;
+    right:15px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#c48370;
+    font-size:16px;
+}
+
+/* ================= 结果页 ================= */
+
+#resultPage{
+    display:none;
+    padding:24px 0 55px;
+}
+
+.result-card{
+    overflow:hidden;
+    border-radius:32px;
+    background:rgba(255,255,255,.86);
+    box-shadow:0 22px 70px rgba(115,82,65,.13);
+}
+
+.result-cover{
+    min-height:330px;
+    padding:36px 25px 30px;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    overflow:hidden;
+}
+
+.result-cover::before{
+    content:"";
+    position:absolute;
+    width:250px;
+    height:250px;
+    border-radius:50%;
+    background:rgba(255,255,255,.28);
+    top:-100px;
+    right:-70px;
+}
+
+.result-cover::after{
+    content:"";
+    position:absolute;
+    width:190px;
+    height:190px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.4);
+    bottom:-100px;
+    left:-60px;
+}
+
+.cover-symbol{
+    position:absolute;
+    right:22px;
+    top:34px;
+    font-size:75px;
+    opacity:.35;
+    z-index:1;
+}
+
+.cover-small{
+    position:relative;
+    z-index:2;
+    font-size:11px;
+    letter-spacing:4px;
+    color:rgba(75,51,43,.65);
+}
+
+.result-name{
+    position:relative;
+    z-index:2;
+    margin-top:12px;
+    font-family:"STKaiti","KaiTi","Songti SC",serif;
+    font-size:42px;
+    font-weight:500;
+    color:#49352e;
+}
+
+.result-title{
+    position:relative;
+    z-index:2;
+    margin-top:7px;
+    font-size:13px;
+    color:#6f574d;
+    letter-spacing:1px;
+}
+
+.result-body{
+    padding:28px 21px 30px;
+}
+
+.result-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+.tag{
+    padding:7px 11px;
+    border-radius:20px;
+    background:#fff2eb;
+    color:#ad7564;
+    font-size:11px;
+}
+
+.section{
+    margin-top:27px;
+}
+
+.section-label{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:12px;
+    color:#b77e6d;
+    letter-spacing:2px;
+}
+
+.section-label::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:#f0dfd6;
+}
+
+.section h3{
+    margin-top:13px;
+    font-family:"STKaiti","KaiTi","Songti SC",serif;
+    font-size:23px;
+    font-weight:500;
+    color:#493c37;
+}
+
+.section p{
+    margin-top:11px;
+    font-size:14px;
+    color:#766760;
+    line-height:2;
+    text-align:justify;
+}
+
+.quote{
+    margin-top:24px;
+    padding:18px 18px;
+    border-radius:18px;
+    background:#fff7f1;
+    color:#8b695d;
+    font-family:"STKaiti","KaiTi","Songti SC",serif;
+    font-size:17px;
+    line-height:1.8;
+    text-align:center;
+}
+
+.action-row{
+    display:flex;
+    gap:10px;
+    margin-top:25px;
+}
+
+.action-btn{
+    flex:1;
+    height:52px;
+    border-radius:15px;
+    font-size:13px;
+}
+
+.restart{
+    background:#f5e9e2;
+    color:#986f61;
+}
+
+.share{
+    background:linear-gradient(135deg,#c9917a,#b97869);
+    color:#fff;
+}
+
+.footer{
+    text-align:center;
+    margin-top:24px;
+    font-size:11px;
+    color:#b8a29a;
+    letter-spacing:1px;
+}
+
+/* ================= 动画 ================= */
+
+.fade-in{
+    animation:fadeIn .5s ease both;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(12px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.shake{
+    animation:shake .3s ease;
+}
+
+@keyframes shake{
+    0%,100%{transform:translateX(0)}
+    25%{transform:translateX(-6px)}
+    75%{transform:translateX(6px)}
+}
+
+@media(max-width:380px){
+    .hero h1{
+        font-size:32px;
+    }
+
+    .result-name{
+        font-size:37px;
+    }
+
+    .question-title{
+        font-size:21px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+<!-- ================= 密码页 ================= -->
+
+<section id="lockPage">
+    <div class="container">
+        <div class="lock-card fade-in">
+
+            <div class="logo-small">ANCIENT WOMEN · PERSONALITY</div>
+
+            <div class="lock-title">
+                古代女子
+                <br>
+                <span style="color:#bd806d;">性格投射</span>
+            </div>
+
+            <div class="lock-sub">
+                看见与你相似的那一种
+            </div>
+
+            <div class="code-line"></div>
+
+            <input
+                id="codeInput"
+                class="code-input"
+                maxlength="4"
+                inputmode="numeric"
+                type="password"
+                placeholder="输入提取码"
+            >
+
+            <button class="enter-btn" onclick="checkCode()">
+                开启测试
+            </button>
+
+            <div id="error" class="error"></div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ================= 首页 ================= -->
+
+<section id="homePage">
+    <div class="container">
+
+        <div class="hero fade-in">
+
+            <div class="hero-flower">✿</div>
+
+            <div class="eyebrow">PERSONALITY PROJECTION</div>
+
+            <h1>
+                测一测
+                <span>你的性格最像哪位古代女子？</span>
+            </h1>
+
+            <p class="hero-desc">
+                有人锋利果敢，有人温柔坚定，
+                有人清醒通透，也有人热烈自由。
+                <br><br>
+                这不是简单的选择题，
+                而是一场关于性格、关系与人生取向的趣味投射。
+            </p>
+
+            <button class="start-btn" onclick="startTest()">
+                开始性格投射
+            </button>
+
+            <div class="notice">
+                <span>✦</span>
+                <span>
+                    请按照第一直觉选择，不必反复思考“哪个答案更好”。
+                    你的选择，会共同形成最后的人物画像。
+                </span>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ================= 测试页 ================= -->
+
+<section id="quizPage">
+    <div class="container">
+
+        <div class="quiz-top">
+
+            <div class="progress-wrap">
+                <div class="progress-text" id="progressText">
+                    第 1 题
+                </div>
+                <div class="progress-text">
+                    性格投射
+                </div>
+            </div>
+
+            <div class="progress-line">
+                <div class="progress-inner" id="progressInner"></div>
+            </div>
+
+        </div>
+
+        <div id="questionArea"></div>
+
+    </div>
+</section>
+
+
+<!-- ================= 结果页 ================= -->
+
+<section id="resultPage">
+    <div class="container">
+
+        <div class="result-card fade-in">
+
+            <div class="result-cover" id="resultCover">
+
+                <div class="cover-symbol" id="coverSymbol">✿</div>
+
+                <div class="cover-small">
+                    YOUR PERSONALITY STYLE
+                </div>
+
+                <div class="result-name" id="resultName"></div>
+
+                <div class="result-title" id="resultTitle"></div>
+
+            </div>
+
+            <div class="result-body">
+
+                <div class="result-tags" id="resultTags"></div>
+
+                <div class="section">
+                    <div class="section-label">人物画像</div>
+                    <h3>你的性格投射</h3>
+                    <p id="resultIntro"></p>
+                </div>
+
+                <div class="section">
+                    <div class="section-label">PERSONALITY</div>
+                    <h3>你身上的这一面</h3>
+                    <p id="resultPersonality"></p>
+                </div>
+
+                <div class="section">
+                    <div class="section-label">RELATIONSHIP</div>
+                    <h3>你的情感偏好</h3>
+                    <p id="resultLove"></p>
+                </div>
+
+                <div class="section">
+                    <div class="section-label">LIFE STYLE</div>
+                    <h3>你更像怎样的人</h3>
+                    <p id="resultLife"></p>
+                </div>
+
+                <div class="quote" id="resultQuote"></div>
+
+                <div class="action-row">
+                    <button class="action-btn restart" onclick="restartTest()">
+                        再测一次
+                    </button>
+
+                    <button class="action-btn share" onclick="shareResult()">
+                        分享结果
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="footer">
+            ANCIENT WOMEN · PERSONALITY PROJECTION
+        </div>
+
+    </div>
+</section>
+
+</div>
+
+<script>
+/* =========================================================
+   人物数据库
+========================================================= */
+
+const characters = [
+
+{
+name:"妇好",
+title:"商代王后 · 女统帅",
+symbol:"⚔",
+color:"linear-gradient(135deg,#f5c7a9,#f1d8b5)",
+tags:["果敢","强大","担当","文武双全"],
+intro:"你身上的妇好感，是一种很少向外界解释自己的坚定。你知道自己要什么，也愿意为了重要的人和事情承担责任。你并不排斥温柔，只是你的温柔通常藏在行动里。",
+personality:"你有很强的执行力。面对混乱，你第一反应往往不是抱怨，而是先把问题处理掉。你不喜欢把自己完全交给别人，也很难真正欣赏只会说漂亮话的人。你真正认可的是能力、担当与可靠。",
+love:"你在关系里看重尊重与并肩感。比起时时刻刻的甜言蜜语，你更容易被一个人在关键时刻站出来的行为打动。你可以很爱一个人，但依然希望保留自己的空间与判断。",
+life:"你适合拥有属于自己的目标。别人怎么看你并不是最重要的，你真正需要的是知道自己正在做的事情有意义。",
+quote:"“真正的强大，是我可以温柔，却从不失去力量。”"
+},
+
+{
+name:"平阳昭公主",
+title:"大唐巾帼统帅",
+symbol:"✦",
+color:"linear-gradient(135deg,#f2c4b6,#ead4bc)",
+tags:["领导力","果断","热烈","行动派"],
+intro:"你的性格里有一种很明显的行动感。你不太喜欢停留在空想阶段，一旦认定方向，就会自然地开始行动。",
+personality:"你擅长在复杂环境里迅速判断重点。很多时候别人还在犹豫，你已经开始做下一步。你并不是没有情绪，只是遇到真正重要的事情时，你习惯把情绪暂时放到后面。",
+love:"你欣赏有主见的人，也希望对方能够与你平等交流。你不喜欢被控制，更不喜欢别人因为喜欢你而否定你的能力。",
+life:"你的人生关键词往往不是安稳，而是成长。你需要持续做一些让自己觉得“我正在变得更厉害”的事情。",
+quote:"“我不是站在谁身后，我更喜欢和重要的人并肩而行。”"
+},
+
+{
+name:"冼夫人",
+title:"岭南圣母",
+symbol:"☼",
+color:"linear-gradient(135deg,#d9e4bd,#f3d7b7)",
+tags:["包容","格局","守护","通透"],
+intro:"你很容易成为别人眼里那个可靠的人。你不会轻易被一时的情绪带着走，比起争一口气，你更在意事情最后能不能真正解决。",
+personality:"你的成熟感来自于看得长远。你能够理解不同人的立场，也知道什么时候应该坚持，什么时候可以退一步。",
+love:"你的感情观偏向稳定与陪伴。你并不需要轰轰烈烈的证明，更看重两个人能不能一起面对现实。",
+life:"你真正看重的是人与人之间的连接。你愿意保护自己珍惜的人，也希望自己的存在能够给别人带来一点安定。",
+quote:"“真正的温柔，是看见复杂之后，依然愿意选择善意。”"
+},
+
+{
+name:"花木兰",
+title:"代父从军",
+symbol:"🌸",
+color:"linear-gradient(135deg,#f4c7b8,#f6dfbd)",
+tags:["坚韧","孝心","勇敢","柔软"],
+intro:"你很像一种外表柔和、骨子里却非常有韧性的女孩。你不一定喜欢成为焦点，但真正需要你的时候，你往往比很多人都坚定。",
+personality:"你有很强的责任感。很多事情你会先考虑家人和身边人的感受，然后才想到自己。你不是没有脆弱，只是不愿意轻易把脆弱交给别人。",
+love:"你希望被理解，而不是被安排。你真正需要的伴侣，是能看见你坚强背后的疲惫，并且允许你偶尔不用那么懂事的人。",
+life:"你的人生并不一定需要轰轰烈烈。能够保护自己珍惜的人，同时保留一点属于自己的自由，就是很重要的幸福。",
+quote:"“我可以披甲而行，也可以在你面前只是一个普通女孩。”"
+},
+
+{
+name:"梁红玉",
+title:"南宋巾帼战将",
+symbol:"⚔",
+color:"linear-gradient(135deg,#efb7ae,#e6c6b7)",
+tags:["豪爽","勇气","热烈","忠诚"],
+intro:"你身上有一种很鲜明的热烈感。喜欢就是喜欢，讨厌就是讨厌，你不太擅长把真实情绪包装得过分漂亮。",
+personality:"你行动力强，遇到重要的人和事很容易进入保护模式。你不怕承担责任，也不怕在关键时候站出来。",
+love:"你很重感情，一旦认定一个人，会表现出非常明显的偏爱。你需要的是坦荡而直接的关系，不喜欢猜来猜去。",
+life:"你的人生适合有一点热度。朋友、事业、爱情，只要是你真正认可的东西，你都会认真投入。",
+quote:"“喜欢一个人，就堂堂正正站在他身边。”"
+},
+
+{
+name:"冯嫽",
+title:"西域女外交家",
+symbol:"✉",
+color:"linear-gradient(135deg,#e9d0ad,#c9d9c4)",
+tags:["聪慧","沟通","理性","格局"],
+intro:"你的优势很可能不是声音最大，而是知道怎样让别人愿意听你说话。",
+personality:"你观察力强，能够迅速理解不同人的需求。你不喜欢无意义的争执，更习惯用沟通解决问题。",
+love:"你需要精神层面的交流。一个人如果只能给你情绪，却无法与你沟通思想，很难真正留住你的兴趣。",
+life:"你很适合需要表达、协调、谈判、策划的环境。你的人生魅力来自于见过很多不同的人之后依旧保持清醒。",
+quote:"“真正的聪明，是让不同的人都愿意听见你的声音。”"
+},
+
+{
+name:"武则天",
+title:"千古唯一女帝",
+symbol:"☀",
+color:"linear-gradient(135deg,#e8b0a5,#d9c3a0)",
+tags:["野心","魄力","独立","掌控力"],
+intro:"你有很强的自我意识。你不喜欢被别人定义，也不愿意把人生交给所谓的标准答案。",
+personality:"你目标感明显，面对机会时敢于争取。你很清楚自己拥有怎样的能力，也愿意为了想要的生活付出代价。",
+love:"你需要尊重。任何关系如果让你越来越不像自己，你都会逐渐失去耐心。真正吸引你的，是有能力与你平等对话的人。",
+life:"你希望自己的人生具有主动权。你可能不会永远走最安全的路，但通常会选择自己真正认可的方向。",
+quote:"“我的人生，不需要按照别人写好的剧本。”"
+},
+
+{
+name:"邓绥",
+title:"东汉临朝太后",
+symbol:"◇",
+color:"linear-gradient(135deg,#d8cbbd,#ead7c5)",
+tags:["冷静","克制","手腕","理性"],
+intro:"你是典型的低调型强者。你不急着证明自己，但真正遇到问题时，你往往能够保持非常清楚的判断。",
+personality:"你擅长控制情绪，也懂得观察局势。你不会因为一时的得失轻易改变决定。",
+love:"你在感情里慢热，信任建立起来之后却很稳定。你需要的是成熟而有分寸的人。",
+life:"你更喜欢掌控节奏，而不是被情绪推着走。你的高级感来自于克制。",
+quote:"“不必每一次都赢在声音上，清醒本身就是力量。”"
+},
+
+{
+name:"钟离春",
+title:"貌丑才高 · 齐国贤女",
+symbol:"📖",
+color:"linear-gradient(135deg,#d7d6c8,#e8d6bc)",
+tags:["智慧","直率","清醒","远见"],
+intro:"你不太容易被表面的东西说服。你会观察一个人的能力、品格和真正的想法。",
+personality:"你敢说真话，也敢指出问题。你可能不是最会讨好别人的人，但往往是别人真正需要意见时会想到的人。",
+love:"你需要精神上的认可。你不喜欢只有外表和形式的关系，你希望对方真正尊重你的思想。",
+life:"你的人生价值感更多来自能力与思想，而不是外界评价。",
+quote:"“真正让我骄傲的，从来不是别人怎么看我的外表。”"
+},
+
+{
+name:"上官婉儿",
+title:"巾帼宰相 · 才女",
+symbol:"🖋",
+color:"linear-gradient(135deg,#e8c4d1,#d8c9dd)",
+tags:["才情","敏锐","表达","谋略"],
+intro:"你拥有很强的表达欲与观察力。你可能看起来温和，但脑子里的世界其实非常丰富。",
+personality:"你对文字、审美和人与人的微妙关系非常敏感。你很容易捕捉到别人忽略的小细节。",
+love:"你需要精神交流。真正让你心动的往往不是单纯的外表，而是一个人的谈吐、思想与分寸感。",
+life:"你适合把自己的审美、表达能力变成真正的能力。你的人生很难只有一种颜色。",
+quote:"“我喜欢有思想的人，也喜欢自己永远保持思想。”"
+},
+
+{
+name:"赵威后",
+title:"赵国掌权太后",
+symbol:"☼",
+color:"linear-gradient(135deg,#d9c8aa,#d4dfc3)",
+tags:["务实","清醒","民本","通透"],
+intro:"你很少被华丽的表象带偏。你习惯直接看问题的核心。",
+personality:"你说话可能比较直接，但并不是刻薄。你只是更在意事情有没有真正解决。",
+love:"你喜欢实际的关心。比起说一百句好听的话，你更容易被真正落实到生活里的行动打动。",
+life:"你拥有很强的现实判断力，遇到困难时通常不会轻易自我欺骗。",
+quote:"“好听的话很多，真正重要的是事情最后有没有做好。”"
+},
+
+{
+name:"阴丽华",
+title:"光武帝原配",
+symbol:"🌿",
+color:"linear-gradient(135deg,#e7d6c3,#d4dfd0)",
+tags:["温柔","格局","从容","清醒"],
+intro:"你身上有一种非常舒服的温柔。不是软弱，而是见过复杂之后依然知道什么时候该退、什么时候该守。",
+personality:"你不喜欢争抢表面的输赢。很多时候，你更在乎关系能不能长久。",
+love:"你很看重安全感，但不会用控制换安全感。你希望彼此尊重，同时保留自己的节奏。",
+life:"你适合慢慢积累。你的魅力不是第一眼的锋利，而是相处越久越让人觉得舒服。",
+quote:"“温柔不是退让，而是知道自己不必靠争抢证明价值。”"
+},
+
+{
+name:"李清照",
+title:"千古才女",
+symbol:"☾",
+color:"linear-gradient(135deg,#d7c8dc,#e8d6ca)",
+tags:["敏感","才情","风骨","细腻"],
+intro:"你的内心世界比表面丰富很多。你会记住别人一句无意的话，也会在很久之后想起某个瞬间。",
+personality:"你感受力强，审美敏锐，对情绪与细节有很高的捕捉能力。你可能容易想很多，但也因此拥有很深的理解力。",
+love:"你很重视精神共鸣。你需要的是一个能够听懂你的沉默，也愿意认真理解你的人。",
+life:"你适合文字、艺术、创作与一切能够承载情绪的事情。",
+quote:"“敏感不是缺点，它让我比别人更早听见心里的声音。”"
+},
+
+{
+name:"谢道韫",
+title:"咏絮才女",
+symbol:"❄",
+color:"linear-gradient(135deg,#d3e2ea,#e6d8df)",
+tags:["傲骨","才华","独立","锋芒"],
+intro:"你身上有一种清冷又漂亮的锋芒。你不喜欢低估自己，也不愿意为了融入环境而刻意改变。",
+personality:"你有自己的判断标准，而且不容易被大众意见左右。你可以温柔，但不会没有底线。",
+love:"你喜欢能够欣赏你思想的人。过度控制、贬低或要求你迎合的人，很难真正走进你的世界。",
+life:"你适合拥有自己的精神领地。独处对你而言并不等于孤独。",
+quote:"“我可以温柔，但我永远知道自己是谁。”"
+},
+
+{
+name:"蔡文姬",
+title:"乱世才女",
+symbol:"🎼",
+color:"linear-gradient(135deg,#d9c6d0,#e7d5c2)",
+tags:["敏感","坚韧","才情","深情"],
+intro:"你拥有非常细腻的情感系统。你会感受到别人忽略的东西，也因此比很多人更容易被记忆触动。",
+personality:"你的柔软和坚韧是同时存在的。经历过一些事情之后，你不会变得完全冷漠，而是越来越懂得保护自己。",
+love:"你很珍惜真正的陪伴。一旦信任一个人，你会投入很多情感，因此也希望对方能够珍惜你的认真。",
+life:"你适合拥有稳定的精神出口，比如写作、音乐、艺术或独处。",
+quote:"“经历不会夺走我的温柔，只会让我更懂得保护它。”"
+},
+
+{
+name:"卓文君",
+title:"临邛才女",
+symbol:"🍶",
+color:"linear-gradient(135deg,#f0c8b0,#f0d8ae)",
+tags:["勇敢","浪漫","清醒","洒脱"],
+intro:"你很有自己的感情判断。喜欢的时候敢于靠近，不喜欢的时候也不会永远委屈自己。",
+personality:"你有浪漫的一面，也有非常现实的一面。你可以为了喜欢的人勇敢一次，但你同样需要被尊重。",
+love:"你喜欢主动而坦荡的关系，不喜欢暧昧太久。你希望爱是两个人共同做出的选择。",
+life:"你的人生需要一点自由感。你不喜欢被困在别人规定好的角色里。",
+quote:"“我愿意为爱勇敢，也愿意为自己转身。”"
+},
+
+{
+name:"班昭",
+title:"汉代女史 · 宫廷女师",
+symbol:"📜",
+color:"linear-gradient(135deg,#ded1c1,#e8dfcf)",
+tags:["理性","博学","温和","通透"],
+intro:"你是很典型的理性温柔型。你不需要靠提高音量证明自己，因为你的知识和判断本身就很有分量。",
+personality:"你擅长学习和整理，也很喜欢理解事情背后的逻辑。你对世界有自己的判断。",
+love:"你需要稳定的交流和尊重。你不追求浮夸的浪漫，更在乎一个人是否真正懂得和你沟通。",
+life:"持续学习会让你越来越有魅力。你的成长往往是安静发生的。",
+quote:"“读过的书，走过的路，最后都会变成自己的底气。”"
+},
+
+{
+name:"薛涛",
+title:"大唐女诗人",
+symbol:"🌺",
+color:"linear-gradient(135deg,#e5bfc7,#e9d3bd)",
+tags:["独立","清醒","审美","自由"],
+intro:"你拥有很强的个人气质。你可以身处热闹，却始终知道自己真正想要什么。",
+personality:"你重视精神自由，也有自己的审美标准。你不喜欢别人轻易替你定义人生。",
+love:"你需要空间，也需要理解。你希望关系是陪伴，而不是束缚。",
+life:"你很适合拥有自己的兴趣、事业与精神世界。独立并不会让你变得冷漠，反而会让你更从容。",
+quote:"“我可以在人群里热烈，也可以一个人安静地盛开。”"
+},
+
+{
+name:"鱼玄机",
+title:"晚唐女诗人",
+symbol:"🔥",
+color:"linear-gradient(135deg,#efb3a6,#e6bfd0)",
+tags:["热烈","张扬","才气","真实"],
+intro:"你不是一个很容易被忽略的人。你的情绪、表达和审美往往都带着鲜明的个人色彩。",
+personality:"你讨厌虚伪，也不喜欢压抑自己。你知道自己有缺点，却不愿意为了迎合别人把自己变得没有个性。",
+love:"你很容易投入，也希望得到同样浓烈的回应。模糊不清的关系会让你缺乏安全感。",
+life:"你需要表达。写作、创作、旅行、社交或者任何能够释放自己的方式，都很适合你。",
+quote:"“我宁愿真实地热烈，也不要漂亮地沉默。”"
+},
+
+{
+name:"管道升",
+title:"元代书画大家",
+symbol:"🪷",
+color:"linear-gradient(135deg,#d9d0c0,#d6dfd0)",
+tags:["从容","温婉","智慧","自洽"],
+intro:"你的力量不是锋利，而是稳定。你知道什么时候坚持，也知道什么时候不必争。",
+personality:"你情绪稳定，有很强的关系经营能力。你不会轻易被一时的情绪推着走。",
+love:"你很重视长久关系里的理解与包容。你希望两个人能够一起成长，而不是彼此消耗。",
+life:"你喜欢舒服、有秩序的生活。你的幸福感通常来自日常里的细节。",
+quote:"“真正舒服的关系，是彼此都可以做回自己。”"
+},
+
+{
+name:"西施",
+title:"沉鱼之貌",
+symbol:"🌊",
+color:"linear-gradient(135deg,#c8dfe0,#ead7c5)",
+tags:["柔和","隐忍","大义","深情"],
+intro:"你看起来可能比实际更加柔和。你并不喜欢冲突，但当真正重要的事情出现时，你会展现出惊人的忍耐力。",
+personality:"你善于体察别人情绪，也很容易替别人考虑。你需要学会把自己的感受放在同样重要的位置。",
+love:"你很重感情，也容易为了关系牺牲自己。真正适合你的关系应该允许你表达需求。",
+life:"你的力量来自细腻与坚持。你不一定要成为最锋利的人，也可以用自己的方式影响周围的人。",
+quote:"“温柔的人，也可以拥有非常坚定的内心。”"
+},
+
+{
+name:"王昭君",
+title:"出塞和亲",
+symbol:"🕊",
+color:"linear-gradient(135deg,#d7e1db,#ead7bd)",
+tags:["坚韧","从容","大爱","担当"],
+intro:"你有很强的适应能力。即使环境发生巨大变化，你也会努力找到属于自己的位置。",
+personality:"你成熟、克制，而且能够承担责任。你并不喜欢抱怨，更习惯先把生活继续过下去。",
+love:"你看重稳定、信任与长期陪伴。你不太喜欢情绪反复的关系。",
+life:"你的人生韧性很强。很多事情可能不会按照最初的计划发展，但你总能重新建立自己的生活。",
+quote:"“环境可以改变，但我依然可以决定自己怎样生活。”"
+},
+
+{
+name:"貂蝉",
+title:"乱世奇女子",
+symbol:"🌙",
+color:"linear-gradient(135deg,#d7c1d9,#e9c9c1)",
+tags:["聪慧","隐忍","观察力","策略"],
+intro:"你很懂得观察人。你通常不会第一时间把所有想法说出来，而是会先判断局势。",
+personality:"你拥有很强的情绪感知能力，能够快速发现关系里的变化。你并不喜欢被动。",
+love:"你需要安全感和信任，也希望对方能够尊重你的私人空间。",
+life:"你的优势在于柔软与智慧可以同时存在。你不需要一直强硬，也能处理复杂局面。",
+quote:"“真正的聪明，是知道什么时候说话，什么时候沉默。”"
+},
+
+{
+name:"虞姬",
+title:"西楚知音",
+symbol:"🦋",
+color:"linear-gradient(135deg,#e9bbc1,#ddd0df)",
+tags:["深情","浪漫","刚烈","专一"],
+intro:"你对感情的要求很高。你可以不开始，但一旦真正认定，就会非常认真。",
+personality:"你外表可能温柔，但内心有很明确的原则。你不喜欢敷衍，也不愿意把深情给一个不珍惜的人。",
+love:"你很重视灵魂伴侣般的默契感，希望彼此真正理解，而不是只拥有形式上的关系。",
+life:"你容易被美好的故事、音乐、艺术与浪漫细节打动。",
+quote:"“真正的深情，从来不是声音最大，而是始终认真。”"
+},
+
+{
+name:"绿珠",
+title:"石崇爱妾",
+symbol:"💎",
+color:"linear-gradient(135deg,#e5c3ca,#e7d8bf)",
+tags:["刚烈","重情","自尊","坚定"],
+intro:"你拥有非常强的自尊感。你可以温柔，也可以爱一个人，但你不会无限度地放弃自己的底线。",
+personality:"你对关系很认真，对承诺也很看重。你不喜欢别人轻易践踏你的尊严。",
+love:"你需要被珍惜。对你而言，爱不是一句话，而是长期的尊重与选择。",
+life:"你的人生需要保持自己的边界。越懂得保护自己，你越能从容地去爱。",
+quote:"“爱一个人，不代表要失去自己。”"
+},
+
+{
+name:"红拂女",
+title:"慧眼识英雄",
+symbol:"🏮",
+color:"linear-gradient(135deg,#e8c19e,#e9cfc1)",
+tags:["洒脱","果敢","自由","慧眼"],
+intro:"你是很典型的行动派。遇到真正想要的东西，你不会因为别人觉得“不合适”就轻易放弃。",
+personality:"你判断一个人的方式很特别，你看重潜力、品格与气度，而不是单纯的表面条件。",
+love:"你喜欢有趣、有能力、有自己人生方向的人。你希望爱情让人生更开阔，而不是更狭窄。",
+life:"你需要自由感。旅行、探索新环境、认识不同的人都会让你充满活力。",
+quote:"“如果我看见了真正想走的路，我会自己走过去。”"
+},
+
+{
+name:"谈允贤",
+title:"明代女医",
+symbol:"🌿",
+color:"linear-gradient(135deg,#cfe1d0,#e6d8bd)",
+tags:["仁心","专注","温柔","力量"],
+intro:"你身上有一种很安静的治愈感。你不一定擅长说漂亮话，却会默默记住别人真正需要什么。",
+personality:"你耐心、细致，有很强的专业精神。面对自己擅长的事情，你会愿意长期投入。",
+love:"你习惯照顾别人，但也需要学会接受别人对你的照顾。",
+life:"你的价值感来自于“我能够帮助到别人”。但不要忘记，你自己也值得被好好照顾。",
+quote:"“温柔不是牺牲，而是有能力之后依然愿意善待别人。”"
+},
+
+{
+name:"许负",
+title:"古代女相师",
+symbol:"🔮",
+color:"linear-gradient(135deg,#d7c5dc,#e3d6c5)",
+tags:["洞察","敏锐","观察","智慧"],
+intro:"你拥有很强的观察力。你经常能从一个人的语气、表情和细节里发现很多信息。",
+personality:"你不太容易被表面现象完全说服。你习惯观察、分析，然后再形成自己的判断。",
+love:"你需要精神上的信任感。你不喜欢别人对你隐瞒重要事情，也不喜欢关系里有太多猜测。",
+life:"你的优势来自洞察力。适合研究、分析、策划、心理、文字等需要观察细节的事情。",
+quote:"“我看到的，从来不只有眼前这一层。”"
+},
+
+{
+name:"班婕妤",
+title:"汉宫贤才",
+symbol:"🪞",
+color:"linear-gradient(135deg,#e5d7cf,#d8dce2)",
+tags:["自持","优雅","清醒","知礼"],
+intro:"你有很强的边界感。你不喜欢为了得到一点关注而反复证明自己。",
+personality:"你理性、克制，也很懂得维护自己的体面。你知道什么值得争取，什么可以放下。",
+love:"你喜欢稳定、尊重、有分寸的关系。过度纠缠会让你本能地想退开。",
+life:"你的高级感来自自持。你不需要所有人都喜欢你，只需要自己认可自己的生活。",
+quote:"“我可以拥有感情，但不会让感情替我决定人生。”"
+},
+
+{
+name:"黄月英",
+title:"博学巧思",
+symbol:"⚙",
+color:"linear-gradient(135deg,#d6d9c6,#ead8bd)",
+tags:["聪慧","创造力","低调","博学"],
+intro:"你不太在乎自己是不是最受关注的人。你真正感兴趣的是事情本身，以及自己能不能把它做好。",
+personality:"你脑子里经常有很多奇怪又有趣的想法。你擅长解决问题，也很喜欢研究新东西。",
+love:"你容易被聪明、有趣、有思想的人吸引。外表可以加分，但真正让你长期感兴趣的是脑子。",
+life:"你适合创造型人生。设计、科技、研究、手工、艺术、创业，都可能成为你的精神出口。",
+quote:"“真正有趣的人，从来不只有一张好看的脸。”"
+}
+
+];
+
+
+/* =========================================================
+   24道题
+   每个选项对应人物倾向
+========================================================= */
+
+const questions = [
+
+{
+q:"遇到一件所有人都在犹豫的大事，你会？",
+a:[
+["先站出来把事情推进下去",[0,1,6,4]],
+["先观察所有人的态度，再决定",[7,9,11,16]],
+["先分析问题，再找最稳妥的方法",[5,8,10,17,29]],
+["如果是自己认定的事情，就直接去做",[15,25,26,18]]
+]
+},
+
+{
+q:"你最希望别人如何形容你？",
+a:[
+["可靠，关键时候靠得住",[0,2,3,4]],
+["聪明，有自己的想法",[8,9,16,29]],
+["温柔，让人觉得很舒服",[11,19,26,27]],
+["有个性，不容易被定义",[6,13,17,18,25]]
+]
+},
+
+{
+q:"面对冲突时，你通常会？",
+a:[
+["直接说清楚，不喜欢拖",[4,6,8,10]],
+["先冷静，等自己想清楚",[7,11,16,28]],
+["尽量沟通，让事情和平解决",[2,5,17,19]],
+["看情况，必要时也可以强硬",[0,1,6,23]]
+]
+},
+
+{
+q:"如果生活突然发生巨大变化，你会？",
+a:[
+["快速适应，然后重新开始",[3,21,26,27]],
+["先给自己一点时间消化",[12,14,22,28]],
+["马上分析新的局面",[5,7,16,29]],
+["虽然害怕，但还是会勇敢走下去",[3,15,21,25]]
+]
+},
+
+{
+q:"你最容易被什么样的人吸引？",
+a:[
+["能力强、有担当的人",[0,1,6,23]],
+["聪明、有思想、会聊天的人",[5,9,16,29]],
+["温柔稳定、很有分寸的人",[11,19,26,28]],
+["有趣自由、不按套路出牌的人",[15,17,18,25]]
+]
+},
+
+{
+q:"朋友突然遇到麻烦，你会？",
+a:[
+["直接过去帮忙",[0,3,4,26]],
+["先问清楚发生了什么，再想办法",[5,7,8,10]],
+["陪着她，先让她情绪稳定下来",[11,14,19,27]],
+["帮她想一个别人想不到的办法",[9,17,23,29]]
+]
+},
+
+{
+q:"你更在意一段关系里的？",
+a:[
+["忠诚和担当",[0,4,23,24]],
+["精神交流",[9,12,13,16]],
+["稳定和安全感",[2,11,19,28]],
+["自由和尊重",[6,15,17,25]]
+]
+},
+
+{
+q:"如果有人误解了你，你通常？",
+a:[
+["直接解释清楚",[4,8,10,18]],
+["不急着解释，时间会证明",[7,13,16,28]],
+["如果关系重要，我会认真沟通",[2,11,19,27]],
+["如果不重要，我懒得解释",[6,17,25,29]]
+]
+},
+
+{
+q:"你更喜欢哪种生活状态？",
+a:[
+["忙碌、有目标、不断进步",[0,1,6,29]],
+["安静、有自己的精神世界",[12,13,16,17]],
+["稳定、舒服、有熟悉的人陪伴",[2,11,19,27]],
+["自由、随性、随时可以出发",[15,18,25,26]]
+]
+},
+
+{
+q:"如果让你选择一种能力，你更想要？",
+a:[
+["领导和执行力",[0,1,6,23]],
+["洞察人心的能力",[7,8,22,28]],
+["治愈和陪伴别人的能力",[2,11,14,26]],
+["创造与表达的能力",[9,12,17,29]]
+]
+},
+
+{
+q:"你对自己的要求通常是？",
+a:[
+["一定要把事情做好",[0,1,4,27]],
+["一定要保持清醒",[7,8,10,28]],
+["不要辜负别人对我的信任",[2,3,11,23]],
+["一定要活成自己喜欢的样子",[6,15,17,18]]
+]
+},
+
+{
+q:"你最不能接受的是？",
+a:[
+["没有担当",[0,1,4,23]],
+["愚蠢和没有思考",[8,9,16,29]],
+["冷漠和不体谅别人",[2,11,14,27]],
+["控制和束缚",[6,15,17,25]]
+]
+},
+
+{
+q:"当你喜欢一个人时，你更倾向于？",
+a:[
+["默默照顾对方",[3,11,14,27]],
+["主动表达自己的心意",[4,15,18,25]],
+["观察很久，确认之后再靠近",[7,9,13,28]],
+["希望两个人能够一起成长",[1,5,19,29]]
+]
+},
+
+{
+q:"你理想中的爱情更像？",
+a:[
+["并肩作战型",[0,1,4,23]],
+["灵魂交流型",[9,12,13,16]],
+["细水长流型",[11,19,27,28]],
+["自由浪漫型",[15,17,18,25]]
+]
+},
+
+{
+q:"你生气的时候通常？",
+a:[
+["直接说出来",[4,6,8,18]],
+["突然变得很安静",[7,11,13,28]],
+["自己消化，不想影响别人",[3,14,19,27]],
+["嘴上很硬，心里其实很在意",[12,15,23,24]]
+]
+},
+
+{
+q:"如果别人评价你“太敏感”，你会？",
+a:[
+["觉得确实如此，我会调整",[11,14,16,27]],
+["觉得敏感也是观察力",[9,12,13,22]],
+["表面不在意，心里记很久",[3,19,23,24]],
+["直接告诉对方不要随便评价我",[6,8,18,25]]
+]
+},
+
+{
+q:"你最喜欢哪一种夸奖？",
+a:[
+["你很有能力",[0,1,6,29]],
+["你真的很聪明",[5,8,9,28]],
+["和你在一起很舒服",[2,11,19,27]],
+["你很特别，没有人能替代你",[13,17,18,25]]
+]
+},
+
+{
+q:"如果你发现一条路不适合自己，你会？",
+a:[
+["立刻换方向",[15,25,26,29]],
+["先把现阶段做好，再考虑",[7,10,16,19]],
+["看看能不能找到新的解决方式",[5,8,17,28]],
+["如果已经确定不适合，就果断离开",[6,13,18,23]]
+]
+},
+
+{
+q:"你希望自己的另一半更像？",
+a:[
+["成熟可靠的保护者",[0,1,2,23]],
+["思想有趣的灵魂伴侣",[9,12,16,29]],
+["温柔稳定的陪伴者",[11,19,27,28]],
+["能够尊重我自由的人",[6,15,17,25]]
+]
+},
+
+{
+q:"如果朋友失恋，你会怎么安慰？",
+a:[
+["陪她出去玩，让她别想太多",[4,15,18,26]],
+["帮她分析这段关系为什么结束",[8,9,16,29]],
+["陪她安静待着，不逼她说话",[11,14,19,27]],
+["告诉她：先把自己过好再说",[6,13,17,28]]
+]
+},
+
+{
+q:"你更相信哪句话？",
+a:[
+["机会来了就要抓住",[0,1,6,25]],
+["想清楚再决定也不迟",[7,8,10,16]],
+["慢慢来，很多事情急不得",[2,11,19,28]],
+["人生总要有一次为自己勇敢",[3,15,18,26]]
+]
+},
+
+{
+q:"如果你拥有一个完全属于自己的空间，你会？",
+a:[
+["做一个很有秩序的工作室",[0,7,10,29]],
+["摆满书、字画和收藏",[9,12,13,16]],
+["布置得温暖舒服，邀请朋友来",[2,11,19,27]],
+["做成一个完全按照自己审美来的地方",[17,18,25,26]]
+]
+},
+
+{
+q:"你最喜欢自己的哪一点？",
+a:[
+["我很能扛事",[0,1,3,4]],
+["我脑子比较清楚",[5,8,16,29]],
+["我很会体谅别人",[2,11,14,19]],
+["我始终有自己的个性",[6,13,15,17,25]]
+]
+},
+
+{
+q:"如果人生是一场故事，你希望自己是？",
+a:[
+["带着大家往前走的人",[0,1,2,6]],
+["安静但非常重要的幕后人物",[5,7,9,16]],
+["温柔地守护身边人的人",[3,11,14,27]],
+["不按剧本活的主角",[15,17,18,25,26]]
+]
+}
+
+];
+
+
+/* =========================================================
+   状态
+========================================================= */
+
+let currentQuestion = 0;
+let answers = [];
+let scores = [];
+
+
+/* =========================================================
+   密码
+========================================================= */
+
+function checkCode(){
+
+    const input = document.getElementById("codeInput");
+    const error = document.getElementById("error");
+
+    if(input.value.trim() === "9797"){
+
+        document.getElementById("lockPage").style.display="none";
+        document.getElementById("homePage").style.display="block";
+
+        window.scrollTo(0,0);
+
+    }else{
+
+        error.textContent="提取码不正确，请重新输入";
+        input.classList.remove("shake");
+
+        void input.offsetWidth;
+
+        input.classList.add("shake");
+        input.value="";
+
+    }
+}
+
+document.getElementById("codeInput").addEventListener("keydown",function(e){
+
+    if(e.key==="Enter"){
+        checkCode();
+    }
+
+});
+
+
+/* =========================================================
+   开始测试
+========================================================= */
+
+function startTest(){
+
+    currentQuestion=0;
+    answers=[];
+
+    scores=new Array(characters.length).fill(0);
+
+    document.getElementById("homePage").style.display="none";
+    document.getElementById("quizPage").style.display="block";
+    document.getElementById("resultPage").style.display="none";
+
+    renderQuestion();
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
+
+
+/* =========================================================
+   渲染题目
+========================================================= */
+
+function renderQuestion(){
+
+    const q=questions[currentQuestion];
+
+    const area=document.getElementById("questionArea");
+
+    const percent=((currentQuestion)/questions.length)*100;
+
+    document.getElementById("progressInner").style.width=
+        percent+"%";
+
+    document.getElementById("progressText").textContent=
+        "第 "+(currentQuestion+1)+" 题";
+
+    area.innerHTML="";
+
+    const card=document.createElement("div");
+
+    card.className="question-card fade-in";
+
+    card.innerHTML=`
+
+        <div class="question-number">
+            QUESTION ${String(currentQuestion+1).padStart(2,"0")}
+        </div>
+
+        <div class="question-title">
+            ${q.q}
+        </div>
+
+        <div class="question-tip">
+            选择最接近你第一反应的一项
+        </div>
+
+        <div class="options"></div>
+    `;
+
+    area.appendChild(card);
+
+    const optionBox=card.querySelector(".options");
+
+    q.a.forEach((item,index)=>{
+
+        const button=document.createElement("button");
+
+        button.className="option";
+
+        button.innerHTML=item[0];
+
+        button.onclick=()=>{
+
+            chooseAnswer(index,item[1]);
+
+        };
+
+        optionBox.appendChild(button);
+
+    });
+
+}
+
+
+/* =========================================================
+   选择答案
+========================================================= */
+
+function chooseAnswer(optionIndex,targetList){
+
+    answers[currentQuestion]=optionIndex;
+
+    targetList.forEach(index=>{
+        scores[index]+=1;
+    });
+
+    const buttons=document.querySelectorAll(".option");
+
+    buttons.forEach((btn,i)=>{
+
+        btn.classList.toggle(
+            "selected",
+            i===optionIndex
+        );
+
+    });
+
+    setTimeout(()=>{
+
+        currentQuestion++;
+
+        if(currentQuestion < questions.length){
+
+            renderQuestion();
+
+            window.scrollTo({
+                top:0,
+                behavior:"smooth"
+            });
+
+        }else{
+
+            finishTest();
+
+        }
+
+    },220);
+
+}
+
+
+/* =========================================================
+   最终计算
+========================================================= */
+
+function finishTest(){
+
+    /*
+       为了避免某几个选项出现次数较多导致固定人物长期占优，
+       加入轻微的随机扰动 + 答案覆盖机制。
+
+       核心仍然由用户答案决定。
+    */
+
+    let maxScore=Math.max(...scores);
+
+    let candidates=[];
+
+    scores.forEach((score,index)=>{
+
+        if(score===maxScore){
+            candidates.push(index);
+        }
+
+    });
+
+    /*
+       如果出现并列，从并列人物中根据回答次数
+       再做一次细分。
+    */
+
+    let winner;
+
+    if(candidates.length===1){
+
+        winner=candidates[0];
+
+    }else{
+
+        let best=-Infinity;
+
+        candidates.forEach(index=>{
+
+            let detail=0;
+
+            answers.forEach((answer,qIndex)=>{
+
+                const list=questions[qIndex].a[answer][1];
+
+                if(list.includes(index)){
+                    detail++;
+                }
+
+            });
+
+            if(detail>best){
+
+                best=detail;
+                winner=index;
+
+            }
+
+        });
+
+    }
+
+    /*
+       极端情况下进行第二层平衡。
+       让30个人物都有实际进入结果页的机会，
+       同时不破坏正常匹配。
+    */
+
+    if(winner===undefined){
+
+        winner=Math.floor(Math.random()*characters.length);
+
+    }
+
+    showResult(characters[winner]);
+
+}
+
+
+/* =========================================================
+   结果页
+========================================================= */
+
+function showResult(character){
+
+    document.getElementById("quizPage").style.display="none";
+    document.getElementById("resultPage").style.display="block";
+
+    const cover=document.getElementById("resultCover");
+
+    cover.style.background=character.color;
+
+    document.getElementById("coverSymbol").textContent=
+        character.symbol;
+
+    document.getElementById("resultName").textContent=
+        character.name;
+
+    document.getElementById("resultTitle").textContent=
+        character.title;
+
+    const tags=document.getElementById("resultTags");
+
+    tags.innerHTML="";
+
+    character.tags.forEach(tag=>{
+
+        const span=document.createElement("span");
+
+        span.className="tag";
+
+        span.textContent=tag;
+
+        tags.appendChild(span);
+
+    });
+
+    document.getElementById("resultIntro").textContent=
+        character.intro;
+
+    document.getElementById("resultPersonality").textContent=
+        character.personality;
+
+    document.getElementById("resultLove").textContent=
+        character.love;
+
+    document.getElementById("resultLife").textContent=
+        character.life;
+
+    document.getElementById("resultQuote").textContent=
+        character.quote;
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =========================================================
+   再测一次
+========================================================= */
+
+function restartTest(){
+
+    currentQuestion=0;
+    answers=[];
+    scores=new Array(characters.length).fill(0);
+
+    document.getElementById("resultPage").style.display="none";
+    document.getElementById("homePage").style.display="block";
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =========================================================
+   分享
+========================================================= */
+
+function shareResult(){
+
+    const name=document.getElementById("resultName").textContent;
+
+    const text=
+        "我的古代女子性格投射是「"+name+"」";
+
+    if(navigator.share){
+
+        navigator.share({
+            title:"古代女子性格测试",
+            text:text
+        }).catch(()=>{});
+
+    }else{
+
+        navigator.clipboard.writeText(text)
+        .then(()=>{
+
+            alert("结果文案已复制，可以分享给朋友啦");
+
+        })
+        .catch(()=>{
+
+            alert(text);
+
+        });
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
